@@ -1,12 +1,36 @@
 package com.wojnar;
 
-import java.util.Scanner;
+import com.wojnar.GameEngine.utils.IPlayer;
+import com.wojnar.GameUI.ConsoleView;
+import com.wojnar.GameUI.IConsoleView;
+import com.wojnar.GameUI.IInputController;
+import com.wojnar.GameUI.InputController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by bartomiej on 27.06.17.
  */
 public class TicTacToeMain {
-    public static void main(String[] args) {
+    public static void main(String[] args){
+        IConsoleView consoleView = new ConsoleView();
+        IInputController inputController = new InputController();
+        boolean isApplicationRunning = true;
+        consoleView.printWelcomeMessage();
+        List<IPlayer> players = new ArrayList<>();
+        for (int i = 1; i < 3; i++) {
+            consoleView.printCharacterNameSelectionMessage(1);
+            //String playerName =
+        }
+        while(isApplicationRunning) {
+            consoleView.printMenuMessage();
+            boolean isGameStarted = false;
+
+        }
+
+    }
+    /*public static void main(String[] args) {
         System.out.println("Which character goes first (X or O)");
         String secondCharacter;
         Scanner sc = new Scanner(System.in);
@@ -95,5 +119,5 @@ public class TicTacToeMain {
             }
             System.out.println(line.substring(0, line.length() - 3));
         }
-    }
+    }*/
 }

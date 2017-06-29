@@ -1,7 +1,5 @@
 package com.wojnar.GameEngine.utils;
 
-import com.wojnar.GameEngine.utils.IPlayer;
-
 /**
  * Created by bartomiej on 29.06.17.
  */
