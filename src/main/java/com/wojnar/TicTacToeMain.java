@@ -88,9 +88,9 @@ public class TicTacToeMain {
     }
 
     static void printBoard(String[][] board) {
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < board.length; i++) {
             String line = "";
-            for(int j = 0; j < 3; j++) {
+            for(int j = 0; j < board[i].length; j++) {
                 line += board[i][j] + " | ";
             }
             System.out.println(line.substring(0, line.length() - 3));
