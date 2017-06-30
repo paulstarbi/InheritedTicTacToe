@@ -12,19 +12,11 @@ Now go to the "java" folder from path above and run program with:
 TODOs:
 -Tests
 -Interfaces
--Extracting abstraction from this garbage (View class with all "println")
--Changeable board sizes
--Changeable length of character sequence needed for win 
-				(shorter board side or specified by player)
--Making game repeatable
--Players names and scores
+-Extracting abstraction better
+-Changeable board sizes (only changing sizes during game execution, setting them on the beggining works)
 -Making game exit option from every place in execution
--Text menu
--Name change option
--Score reset
 -language option???
--save state???
--log gameplays???
+
 
 
 -Refactor
