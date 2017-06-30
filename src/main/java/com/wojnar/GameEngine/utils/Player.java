@@ -1,5 +1,10 @@
 package com.wojnar.GameEngine.utils;
 
+import com.wojnar.GameUI.IConsoleView;
+
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * Created by bartomiej on 29.06.17.
  */
@@ -41,5 +46,26 @@ public class Player implements IPlayer {
     @Override
     public void setCharacter() {
         this.character = character;
+    }
+
+    public static Player createPlayer(int i, Scanner ic, List<String> availableCharacters) {
+        IConsoleView.printPlayerNameSelectionMessage(i);
+        String playerName = ic.next();
+        Player newPlayer;
+        if (availableCharacters.size() > 1) {
+            IConsoleView.printCharacterSelectionMessage();
+            String chosenCharacter = ic.next();
+            int indexOfChosenCharacter = availableCharacters.indexOf(chosenCharacter);
+            if (indexOfChosenCharacter != -1) {
+                newPlayer = new Player(playerName, availableCharacters.remove(indexOfChosenCharacter));
+            } else {
+                IConsoleView.printWrongCharacterSelection();
+                newPlayer = new Player(playerName, availableCharacters.remove(0));
+            }
+        } else {
+            newPlayer = new Player(playerName, availableCharacters.remove(0));
+        }
+
+        return newPlayer;
     }
 }

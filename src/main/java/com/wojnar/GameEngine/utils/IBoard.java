@@ -1,5 +1,9 @@
 package com.wojnar.GameEngine.utils;
 
+import com.wojnar.GameUI.IConsoleView;
+
+import java.util.Scanner;
+
 /**
  * Created by bartomiej on 29.06.17.
  */
@@ -13,4 +17,5 @@ public interface IBoard {
     String[] getRow(int index);
     String[] getColumn(int index);
     void clearBoard();
+    boolean isFieldClaimedByCharacter(int x, int y, String character);
 }

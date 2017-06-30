@@ -2,8 +2,10 @@ package com.wojnar.GameEngine;
 
 import com.wojnar.GameEngine.utils.IBoard;
 import com.wojnar.GameEngine.utils.IPlayer;
+import com.wojnar.GameUI.IConsoleView;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Created by bartomiej on 29.06.17.
@@ -65,15 +67,39 @@ public class WinChecker implements IWinChecker {
         String character = player.getCharacter();
         int xSize = board.getXSize();
         int ySize = board.getYSize();
-        for (int i = 0; i < ySize - sequenceLength; i++)
-            for(int j = 0; j < xSize - sequenceLength; j++) {
-                playerWon = true;
+        for (int i = 0; i < ySize - sequenceLength + 1; i++)
+            for(int j = 0; j < xSize - sequenceLength + 1; j++) {
+                boolean byDiagonal = true;
+                boolean byBacksideDiagonal = true;
                 for (int k = 0; k < sequenceLength; k++) {
-                    if (!board.getField(j, i).equals(character)) playerWon = false;
-                    if (!board.getField(xSize - 1 -j, ySize - 1 - i).equals(character)) playerWon = false;
+                    if (!board.isFieldClaimedByCharacter(j, i, character))
+                        byDiagonal = false;
+                    if (!board.isFieldClaimedByCharacter(xSize - 1 - j, ySize - 1 - i, character))
+                        byBacksideDiagonal = false;
                 }
-                if(playerWon) break;
+                if(byDiagonal || byBacksideDiagonal){
+                    playerWon = true;
+                    break;
+                }
             }
         return playerWon;
+    }
+
+    public static int findOutLengthOfSequence(Scanner ic, IBoard board) {
+        IConsoleView.printSelectingSequenceLengthMessage();
+
+        while(!ic.hasNextInt())
+            IConsoleView.printPassNumberErrorMessage();
+
+        int length = ic.nextInt();
+        if(length > board.getShorterSide()) {
+            IConsoleView.printSequenceLengthTooBigMessage();
+            length = board.getShorterSide();
+        } else if ( length < 3) {
+            IConsoleView.printSequenceLengthTooSmallMessage();
+            length = 3;
+        }
+
+        return length;
     }
 }
