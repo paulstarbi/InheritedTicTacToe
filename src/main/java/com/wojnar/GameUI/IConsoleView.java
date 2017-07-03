@@ -1,6 +1,6 @@
 package com.wojnar.GameUI;
 
-import com.wojnar.GameEngine.utils.IBoard;
+import com.wojnar.GameEngine.Boards.IBoard;
 import com.wojnar.GameEngine.utils.IPlayer;
 
 /**
@@ -79,6 +79,10 @@ public interface IConsoleView {
         System.out.println(player.getName() + " won match!");
     }
 
+
+    static void printInputMismachExMessage() {
+        System.out.println("Wrong field !!!! Try again !! Chose field number from PlayBoard!!");
+    }
 
     static void printBoard(IBoard board) {
         for(int i = 0; i < board.getYSize(); i++) {

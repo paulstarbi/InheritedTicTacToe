@@ -1,4 +1,4 @@
-package com.wojnar.GameEngine.utils;
+package com.wojnar.GameEngine.Boards;
 
 import com.wojnar.GameUI.IConsoleView;
 

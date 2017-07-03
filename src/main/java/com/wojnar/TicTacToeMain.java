@@ -1,8 +1,8 @@
 package com.wojnar;
 
 import com.wojnar.GameEngine.*;
-import com.wojnar.GameEngine.utils.Board;
-import com.wojnar.GameEngine.utils.IBoard;
+import com.wojnar.GameEngine.Boards.Board;
+import com.wojnar.GameEngine.Boards.IBoard;
 import com.wojnar.GameEngine.utils.IPlayer;
 import com.wojnar.GameEngine.utils.Player;
 import com.wojnar.GameUI.IConsoleView;
