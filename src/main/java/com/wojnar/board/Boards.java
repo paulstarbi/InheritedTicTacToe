@@ -1,4 +1,4 @@
-package com.wojnar.GameEngine.board;
+package com.wojnar.board;
 
 import java.util.Set;
 
@@ -11,4 +11,8 @@ public interface Boards {
     boolean setValue(int i, AvailableMarks o);
     Set entrySet();
     int getWidth();
+    void clearBoard();
+    int getHeight();
+    boolean isFieldAvailable(int where);
+    Set<Integer> keySet();
 }

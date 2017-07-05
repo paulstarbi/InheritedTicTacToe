@@ -1,6 +1,6 @@
 package com.wojnar.IOstrems;
 
-import com.wojnar.GameEngine.Players.Player;
+import com.wojnar.Players.Player;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,7 +17,8 @@ public class OutputController {
 
      void writeOut(String message) {
         try {
-            output.write(message.getBytes());
+            String nLineMessage = message.concat("\n");
+            output.write(nLineMessage.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +43,7 @@ public class OutputController {
     }
 
      public void printWrongCharacterSelection() {
-        writeOut("Unavailable characters selected. First player will get X, second player O");
+        writeOut("Unavailable characters selected. Chose X or O");
     }
 
     public void printBoardSizeSelectionMessage(String axis) {

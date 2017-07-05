@@ -1,6 +1,6 @@
-package com.wojnar.GameEngine.Players;
+package com.wojnar.Players;
 
-import com.wojnar.GameEngine.board.AvailableMarks;
+import com.wojnar.board.AvailableMarks;
 
 /**
  * Created by bartomiej on 29.06.17.

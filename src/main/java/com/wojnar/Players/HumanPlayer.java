@@ -1,6 +1,6 @@
-package com.wojnar.GameEngine.Players;
+package com.wojnar.Players;
 
-import com.wojnar.GameEngine.board.AvailableMarks;
+import com.wojnar.board.AvailableMarks;
 import com.wojnar.IOstrems.OutputController;
 import com.wojnar.IOstrems.InputController;
 
@@ -14,7 +14,10 @@ public class HumanPlayer implements Player {
     private int score;
     private AvailableMarks character;
 
-    private HumanPlayer(String name, AvailableMarks character) {
+    public HumanPlayer() {
+    }
+
+    HumanPlayer(String name, AvailableMarks character) {
         this.name = name;
         this.character = character;
         score = 0;
@@ -56,7 +59,7 @@ public class HumanPlayer implements Player {
         HumanPlayer newPlayer;
         if (availableCharacters.size() > 1) {
             out.printCharacterSelectionMessage();
-            String chosenCharacter = ic.choseMark();
+            AvailableMarks chosenCharacter = ic.choseMark();
             int indexOfChosenCharacter = availableCharacters.indexOf(chosenCharacter);
             if (indexOfChosenCharacter != -1) {
                 newPlayer = new HumanPlayer(playerName, availableCharacters.remove(indexOfChosenCharacter));

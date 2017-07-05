@@ -1,4 +1,4 @@
-//package com.wojnar.GameEngine.board;
+//package com.wojnar.board;
 //
 //import com.wojnar.IOstrems.OutputController;
 //

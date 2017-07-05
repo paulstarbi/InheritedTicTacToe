@@ -1,6 +1,6 @@
 package com.wojnar.GameEngine;
 
-import com.wojnar.GameEngine.Players.Player;
+import com.wojnar.Players.Player;
 
 /**
  * Created by bartomiej on 29.06.17.

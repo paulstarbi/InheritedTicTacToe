@@ -1,4 +1,4 @@
-//package com.wojnar.GameEngine.board;
+//package com.wojnar.board;
 //
 ///**
 // * Created by bartomiej on 29.06.17.

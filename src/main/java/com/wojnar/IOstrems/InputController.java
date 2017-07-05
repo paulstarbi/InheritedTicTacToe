@@ -1,5 +1,7 @@
 package com.wojnar.IOstrems;
 
+import com.wojnar.board.AvailableMarks;
+
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -12,14 +14,9 @@ public class InputController {
     private OutputController out;
 
 
-    public InputController() {
+    public InputController(InputStream in, OutputController outputController) {
         this.entry = new Scanner(System.in);
-        this.out = new OutputController(System.out);
-    }
-
-    public InputController(Scanner entry, InputStream input) {
-        this.input = input;
-        this.entry = entry;
+        this.out = outputController;
     }
 
     public void takeBoardSizes() {
@@ -47,7 +44,18 @@ public class InputController {
         return entry.next();
     }
 
-    public String choseMark() {
-        return entry.next();
+    public AvailableMarks choseMark() {
+        try{
+            String mark =entry.next();
+            if(mark.equalsIgnoreCase(AvailableMarks.O.getCharacter()))
+                return AvailableMarks.O;
+            else if(mark.equalsIgnoreCase(AvailableMarks.X.getCharacter()))
+                return AvailableMarks.X;
+            else
+                throw new IllegalArgumentException();
+        } catch (IllegalArgumentException iae){
+            out.printWrongCharacterSelection();
+            return choseMark();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.wojnar.GameEngine.board;
+package com.wojnar.board;
 
 import java.util.Iterator;
 import java.util.Map;
