@@ -97,4 +97,11 @@ public class OutputController {
     public void printGodbayMessage() {
         writeOut("See You.");
     }
+
+    public void printWhichPlayerHasToStar(List<Player> players) {
+        writeOut("Who starts ? \n"+players.get(0).getCharacter()+
+                " - "+players.get(0).getName()+ "\n"
+                + players.get(1).getCharacter()+
+                " - "+players.get(1).getName());
+    }
 }

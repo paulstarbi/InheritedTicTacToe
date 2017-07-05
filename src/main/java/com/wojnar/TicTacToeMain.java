@@ -32,9 +32,6 @@ public class TicTacToeMain {
         for (int i = 1; i < 3; i++) {
             players.add(PlayerCreator.createPlayer(i, inControl, availableCharacters,outControl));
         }
-        for (Player p:players) {
-            System.out.println(p.getCharacter());
-        }
 
         myPlayBoard.createBoard(inControl.getWidth(),inControl.getHeight());
         outControl.printSelectingSequenceLengthMessage();

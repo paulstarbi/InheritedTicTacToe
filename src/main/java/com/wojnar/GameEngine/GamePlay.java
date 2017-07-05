@@ -35,11 +35,11 @@ public class GamePlay implements IGamePlay{
     public boolean executeGamePlay(Player currPlayer) {
         playBoard.clearBoard();
             for (int turns = 0; isGameInProgress && turns < playBoard.getSize(); turns++) {
-                currPlayer = currPlayer.changePlayer(players);
                 BoardDrawer.drawBoard(playBoard);
                 out.printCharacterPlacingMessage(currPlayer);
                 getAvailableFieldNumFromUser(currPlayer);
                 checkIfPlayerWon(currPlayer);
+                currPlayer = currPlayer.changePlayer(players);
             }
         return false;
     }
