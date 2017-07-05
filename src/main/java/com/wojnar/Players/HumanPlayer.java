@@ -14,22 +14,23 @@ public class HumanPlayer implements Player {
     private int score;
     private AvailableMarks character;
 
-    public HumanPlayer() {
-    }
-
-    HumanPlayer(String name, AvailableMarks character) {
+    public HumanPlayer(String name, AvailableMarks character) {
         this.name = name;
         this.character = character;
         score = 0;
     }
+
     @Override
-    public String getName() {
-        return name;
+    public Player changePlayer(List<Player> players) {
+            if(this.getCharacter().equals(players.get(0).getCharacter()))
+                return players.get(1);
+            else
+                return players.get(0);
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -38,8 +39,8 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void addPoint() {
-        ++score;
+    public void addPoint(int i) {
+        score+=i;
     }
 
     @Override
@@ -47,30 +48,4 @@ public class HumanPlayer implements Player {
         return character;
     }
 
-    @Override
-    public void setCharacter() {
-        this.character = character;
-    }
-
-    public static HumanPlayer createPlayer(int i, InputController ic, List<AvailableMarks> availableCharacters, OutputController out) {
-        out.printPlayerNameSelectionMessage(i);
-
-        String playerName = ic.playerName();
-        HumanPlayer newPlayer;
-        if (availableCharacters.size() > 1) {
-            out.printCharacterSelectionMessage();
-            AvailableMarks chosenCharacter = ic.choseMark();
-            int indexOfChosenCharacter = availableCharacters.indexOf(chosenCharacter);
-            if (indexOfChosenCharacter != -1) {
-                newPlayer = new HumanPlayer(playerName, availableCharacters.remove(indexOfChosenCharacter));
-            } else {
-                out.printWrongCharacterSelection();
-                newPlayer = new HumanPlayer(playerName, availableCharacters.remove(0));
-            }
-        } else {
-            newPlayer = new HumanPlayer(playerName, availableCharacters.remove(0));
-        }
-
-        return newPlayer;
-    }
 }

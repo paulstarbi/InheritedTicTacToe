@@ -13,6 +13,7 @@ import java.util.List;
 
     static HumanPlayer createPlayer(int i, InputController ic, List< AvailableMarks > availableCharacters, OutputController
         out) {
+
             out.printPlayerNameSelectionMessage(i);
 
             String playerName = ic.playerName();
@@ -20,15 +21,11 @@ import java.util.List;
             if (availableCharacters.size() > 1) {
                 out.printCharacterSelectionMessage();
                 AvailableMarks chosenCharacter = ic.choseMark();
-                int indexOfChosenCharacter = availableCharacters.indexOf(chosenCharacter);
-                if (indexOfChosenCharacter != -1) {
-                    newPlayer = new HumanPlayer(playerName, availableCharacters.remove(indexOfChosenCharacter));
-                } else {
-                    out.printWrongCharacterSelection();
-                    newPlayer = new HumanPlayer(playerName, availableCharacters.remove(0));
+                availableCharacters.remove(availableCharacters.indexOf(chosenCharacter));
+                newPlayer = new HumanPlayer(playerName, chosenCharacter);
                 }
-            } else {
-                newPlayer = new HumanPlayer(playerName, availableCharacters.remove(0));
+            else {
+                newPlayer = new HumanPlayer(playerName, availableCharacters.get(0));
             }
 
             return newPlayer;

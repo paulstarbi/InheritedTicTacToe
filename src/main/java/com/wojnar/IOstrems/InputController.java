@@ -3,6 +3,7 @@ package com.wojnar.IOstrems;
 import com.wojnar.board.AvailableMarks;
 
 import java.io.InputStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -15,25 +16,8 @@ public class InputController {
 
 
     public InputController(InputStream in, OutputController outputController) {
-        this.entry = new Scanner(System.in);
+        this.entry = new Scanner(in);
         this.out = outputController;
-    }
-
-    public void takeBoardSizes() {
-        getSizeFromUser("OX", entry);
-        getSizeFromUser("OY",entry);
-     }
-
-     private int getSizeFromUser(String axis, Scanner entry) {
-        int size;
-        while(!entry.hasNextInt())
-            out.printPassNumberErrorMessage();
-        size = entry.nextInt();
-        if (size < 3) {
-            out.printToSmallBoardSizeMessage(axis);
-            size = 3;
-        }
-        return size;
     }
 
     public int nextInt() {
@@ -57,5 +41,46 @@ public class InputController {
             out.printWrongCharacterSelection();
             return choseMark();
         }
+    }
+    public int takeNumberFromUser(){
+        String userIntput = entry.next();
+        try {
+            return Integer.parseInt(userIntput);
+        }catch (NumberFormatException nfe){
+            out.printWrongSequence();
+            return takeNumberFromUser();
+        }
+    }
+
+    public int takeNumberFromUser(int width, int height) {
+        String userIntput = entry.next();
+        try {
+            if (Integer.parseInt(userIntput) < 3)
+                throw new InputMismatchException();
+            else if (Integer.parseInt(userIntput) >width ||
+                    Integer.parseInt(userIntput) > height)
+                throw new IllegalArgumentException();
+                return Integer.parseInt(userIntput);
+        }catch (InputMismatchException ime ) {
+            out.printWrongSequence(3);
+            return takeNumberFromUser();
+        }catch (NumberFormatException nfe){
+                out.printWrongSequence();
+                return takeNumberFromUser();
+        }catch (IllegalArgumentException iae){
+            out.printWrongSequence(width,height);
+            return takeNumberFromUser(width,height);
+        }
+    }
+
+
+    public int getWidth() {
+        out.printBoardSizeSelectionMessage("OX");
+        return takeNumberFromUser();
+    }
+
+    public int getHeight() {
+        out.printBoardSizeSelectionMessage("OY");
+        return takeNumberFromUser();
     }
 }

@@ -26,58 +26,49 @@ public class GamePlay implements IGamePlay{
         this.players = players;
         this.winChecker = winChecker;
         this.inputController = inputController;
+        this.isGameInProgress=true;
         this.out=out;
         this.updater=new BoardUpdater(board,out);
     }
 
     @Override
-    public boolean executeGamePlay() {
-        isGameInProgress = true;
-        boolean isBO3InProgress = true;
+    public boolean executeGamePlay(Player currPlayer) {
         playBoard.clearBoard();
-        for(int turns = 0; isGameInProgress && turns < playBoard.getHeight() * playBoard.getWidth(); turns++) {
-            for (Player player : players) {
+            for (int turns = 0; isGameInProgress && turns < playBoard.getSize(); turns++) {
+                currPlayer = currPlayer.changePlayer(players);
                 BoardDrawer.drawBoard(playBoard);
-                out.printCharacterPlacingMessage(player);
-                getAvailableFieldNumFromUser(player);
-                isBO3InProgress = checkIfPlayerWon(player, isBO3InProgress);
+                out.printCharacterPlacingMessage(currPlayer);
+                getAvailableFieldNumFromUser(currPlayer);
+                checkIfPlayerWon(currPlayer);
             }
-        }
-
-        return isBO3InProgress;
+        return false;
     }
-
 
     private void getAvailableFieldNumFromUser(Player player) {
         boolean playerGotRightCoordinates = false;
         while (!playerGotRightCoordinates) {
-            int where = inputController.nextInt();
+            int where = inputController.takeNumberFromUser();
             if (where > 0 && where < playBoard.getSize()) {
                 if (playBoard.isFieldAvailable(where)) {
                     updater.updateBoard(where, player.getCharacter());
                     playerGotRightCoordinates = true;
                 } else {
-                    out.printWrongCoordinatesMessage();
+                    out.fieldBusy();
                     BoardDrawer.drawBoard(playBoard);
                 }
             } else {
-                out.printWrongCoordinatesMessage();
+                out.fieldNonExist();
                 BoardDrawer.drawBoard(playBoard);
             }
         }
     }
 
-    private boolean checkIfPlayerWon(Player player, boolean isBO3InProgress) {
+    private boolean checkIfPlayerWon(Player player) {
         if (winChecker.checkIfPlayerWon(player)) {
-            player.addPoint();
+            player.addPoint(3);
             out.printOneGameWonMessage(player);
             isGameInProgress = false;
-            if (player.getScore() == 2) {
-                out.printBO3WonMessage(player);
-                isBO3InProgress = false;
-            }
         }
-
-        return isBO3InProgress;
+        return isGameInProgress;
     }
 }

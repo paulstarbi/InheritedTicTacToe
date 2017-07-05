@@ -12,7 +12,7 @@ public class PlayBoard implements BoardCreator {
     private int height;
 
     public PlayBoard(){
-        this.playBoard =new HashMap<>();
+        this.playBoard = new HashMap<>();
     }
 
     @Override
@@ -21,6 +21,13 @@ public class PlayBoard implements BoardCreator {
             playBoard.put(i, AvailableMarks.EMPTY_MARK);
             this.width=width;
             this.height=height;
+        }
+    }
+
+    @Override
+    public void clearBoard() {
+        for (int key:playBoard.keySet()) {
+            playBoard.put(key,AvailableMarks.EMPTY_MARK);
         }
     }
 
@@ -42,10 +49,8 @@ public class PlayBoard implements BoardCreator {
             }
                 else {
                 throw new InputMismatchException();
-
             }
     }
-
 
     @Override
     public Set<Integer> keySet() {
@@ -72,12 +77,4 @@ public class PlayBoard implements BoardCreator {
         else
             return true;
     }
-
-    @Override
-    public void clearBoard() {
-        for (int key:playBoard.keySet()) {
-            playBoard.put(key,AvailableMarks.EMPTY_MARK);
-        }
-    }
-
 }

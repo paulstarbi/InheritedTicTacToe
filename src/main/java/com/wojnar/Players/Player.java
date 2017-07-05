@@ -2,14 +2,16 @@ package com.wojnar.Players;
 
 import com.wojnar.board.AvailableMarks;
 
+import java.util.List;
+
 /**
  * Created by bartomiej on 29.06.17.
  */
 public interface Player {
     String getName();
-    void setName(String name);
     int getScore();
-    void addPoint();
+    void addPoint(int i);
     AvailableMarks getCharacter();
-    void setCharacter();
+    Player changePlayer(List<Player> players);
+
 }
