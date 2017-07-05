@@ -1,19 +1,19 @@
-package com.wojnar.GameEngine.Boards;
+package com.wojnar.GameEngine.board;
 
-import com.wojnar.GameEngine.Boards.AvailableMarks;
-import com.wojnar.GameEngine.Boards.Boards;
-import com.wojnar.GameUI.IConsoleView;
+import com.wojnar.IOstrems.OutputController;
 
 import java.util.InputMismatchException;
 
 /**
  * Created by paul on 03.07.17.
  */
-public class BoardUpdator {
+public class BoardUpdater {
 
     private Boards myPlayBoard;
+    private OutputController out;
 
-    public BoardUpdator(Boards myPlayBoard) {
+    public BoardUpdater(Boards myPlayBoard, OutputController out) {
+        this.out = out;
         this.myPlayBoard = myPlayBoard;
     }
 
@@ -23,8 +23,9 @@ public class BoardUpdator {
             myPlayBoard.setValue(i,o);
             return true;
         }catch (InputMismatchException ime){
-            IConsoleView.printInputMismachExMessage();
+            out.printInputMismachExMessage();
             return false;
         }
     }
+
 }

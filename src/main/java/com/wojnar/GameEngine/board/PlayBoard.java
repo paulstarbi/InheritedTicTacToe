@@ -1,12 +1,14 @@
-package com.wojnar.GameEngine.Boards;
+package com.wojnar.GameEngine.board;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.Set;
 
 public class PlayBoard implements BoardCreator {
 
     private Map<Integer, AvailableMarks> playBoard;
+    private int width;
 
     public PlayBoard(){
         this.playBoard =new HashMap<>();
@@ -16,6 +18,7 @@ public class PlayBoard implements BoardCreator {
     public void createBoard(int width, int height) {
         for (int i = 1; i<width* height +1; i++){
             playBoard.put(i, AvailableMarks.EMPTY_MARK);
+            this.width=width;
         }
     }
 
@@ -38,5 +41,15 @@ public class PlayBoard implements BoardCreator {
                 else {
                 throw new InputMismatchException();
             }
+    }
+
+    @Override
+    public Set entrySet() {
+        return playBoard.entrySet();
+    }
+
+    @Override
+    public int getWidth() {
+        return this.width;
     }
 }

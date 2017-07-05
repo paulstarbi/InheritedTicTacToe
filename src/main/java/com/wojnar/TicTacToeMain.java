@@ -1,45 +1,45 @@
 package com.wojnar;
 
 import com.wojnar.GameEngine.*;
-import com.wojnar.GameEngine.Boards.Board;
-import com.wojnar.GameEngine.Boards.IBoard;
-import com.wojnar.GameEngine.utils.IPlayer;
-import com.wojnar.GameEngine.utils.Player;
-import com.wojnar.GameUI.IConsoleView;
+import com.wojnar.GameEngine.Players.HumanPlayer;
+import com.wojnar.GameEngine.board.AvailableMarks;
+import com.wojnar.GameEngine.board.Boards;
+import com.wojnar.GameEngine.Players.Player;
+import com.wojnar.GameEngine.board.PlayBoard;
+import com.wojnar.IOstrems.InputController;
+import com.wojnar.IOstrems.OutputController;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by bartomiej on 27.06.17.
  */
 public class TicTacToeMain {
     public static void main(String[] args){
-        Scanner inputController = new Scanner(System.in);;
+        OutputController outputController = new OutputController(System.out);
+        InputController inputController = new InputController();
         boolean isApplicationRunning = true;
-        IConsoleView.printWelcomeMessage();
+        outputController.printWelcomeMessage();
 
-        List<IPlayer> players = new ArrayList<>();
-        List<String> availableCharacters = new ArrayList<>();
-        availableCharacters.add("X");
-        availableCharacters.add("O");
+        List<Player> players = new ArrayList<>();
+        List<AvailableMarks> availableCharacters = new ArrayList<>();
+        availableCharacters.add(AvailableMarks.X);
+        availableCharacters.add(AvailableMarks.O);
 
         for (int i = 1; i < 3; i++) {
-            players.add(Player.createPlayer(i, inputController, availableCharacters));
+            players.add(HumanPlayer.createPlayer(i, inputController, availableCharacters,outputController));
         }
 
-        IBoard board = Board.createBoard(inputController);
-        int characterSequenceLength = WinChecker.findOutLengthOfSequence(inputController, board);
-
-        //System.out.println(board.getXSize() + " is x size, " + board.getYSize() + "is y size of board");
-        //System.out.println(characterSequenceLength + " is a length of sequence");
-
+        Boards myPlayBoard = new PlayBoard();
+        int characterSequenceLength = WinChecker.findOutLengthOfSequence(inputController, myPlayBoard);
+        inputController.takeBoardSizes();
         while(isApplicationRunning) {
-            IConsoleView.printMenuMessage();
+            outputController.printMenuMessage();
             switch(inputController.nextInt()) {
                 case 1: {
-                    IBestOfThree bo3 = new BestOfThree(players, board, new WinChecker(board, characterSequenceLength), inputController);
+                    IBestOfThree bo3 = new BestOfThree(players, myPlayBoard,
+                            new WinChecker(myPlayBoard, characterSequenceLength), inputController);
                     bo3.executeGameFormat();
                     break;
                 }
