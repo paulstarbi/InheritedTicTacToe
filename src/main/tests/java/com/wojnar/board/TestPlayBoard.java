@@ -49,7 +49,7 @@ public class TestPlayBoard {
         assertEquals(myPlayBoard.getValue(x),AvailableMarks.EMPTY_MARK);
     }
 
-    @Test(dataProvider ="avaiableSize")
+    @Test(dataProvider ="availableSize")
     public void testIfEachFieldInEmptyBoardContainEmptyValue(int x, int y){
         Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(x,y);
@@ -58,7 +58,7 @@ public class TestPlayBoard {
         }
     }
 
-    @Test(dataProvider ="avaiableSize")
+    @Test(dataProvider ="availableSize")
     public void testUpdatingFieldByAvailableValues(int x, int y){
         Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(x,y);
@@ -69,7 +69,7 @@ public class TestPlayBoard {
         }
     }
 
-    @Test(dataProvider ="avaiableSize")
+    @Test(dataProvider ="availableSize")
     public void testReturnClearBoardToNextPlay(int x, int y){
         Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(x,y);

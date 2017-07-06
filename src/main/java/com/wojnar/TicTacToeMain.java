@@ -8,6 +8,7 @@ import com.wojnar.board.Boards;
 import com.wojnar.board.PlayBoard;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
+import com.wojnar.board.WinChecker;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,6 +6,7 @@ import com.wojnar.board.BoardUpdater;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
 import com.wojnar.board.Boards;
+import com.wojnar.board.IWinChecker;
 
 import java.util.List;
 

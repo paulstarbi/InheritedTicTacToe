@@ -1,7 +1,7 @@
 package com.wojnar;
 
 import com.wojnar.GameEngine.BestOfThree;
-import com.wojnar.GameEngine.WinChecker;
+import com.wojnar.board.WinChecker;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
 import com.wojnar.Players.HumanPlayer;
@@ -54,6 +54,7 @@ public class UserInputControllerTests {
         myPlayBoard.createBoard(43,26);
         assertEquals(myPlayBoard.getSize(),43*26);
     }
+
 
     @Test(dataProvider = "possiblMark")
     public void testChooseWhichCharacterStartTheGame(String playerChar ,AvailableMarks marks){

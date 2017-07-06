@@ -1,4 +1,4 @@
-package com.wojnar.GameEngine;
+package com.wojnar.board;
 
 import com.wojnar.Players.Player;
 
