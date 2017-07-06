@@ -1,10 +1,10 @@
 package com.wojnar.GameEngine;
 
 import com.wojnar.board.AvailableMarks;
-import com.wojnar.board.Boards;
 import com.wojnar.Players.Player;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
+import com.wojnar.board.Boards;
 
 import java.util.List;
 
@@ -28,6 +28,7 @@ public class BestOfThree implements IBestOfThree {
         this.out = out;
     }
 
+
     @Override
     public void executeGameFormat() {
         int BestOfThree = 0;
@@ -41,9 +42,9 @@ public class BestOfThree implements IBestOfThree {
         out.printBO3WonMessage(players);
     }
 
-    private Player whoStart() {
+    public Player whoStart() {
         out.printWhichPlayerHasToStar(players);
-        AvailableMarks mark =inputController.choseMark();
+        AvailableMarks mark = inputController.choseMark();
         if (players.get(0).getCharacter()==mark)
             return players.get(0);
         else

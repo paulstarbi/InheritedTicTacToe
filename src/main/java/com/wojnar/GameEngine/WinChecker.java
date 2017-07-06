@@ -1,7 +1,7 @@
 package com.wojnar.GameEngine;
 
-import com.wojnar.board.Boards;
 import com.wojnar.Players.Player;
+import com.wojnar.board.Boards;
 
 /**
  * Created by bartomiej on 29.06.17.

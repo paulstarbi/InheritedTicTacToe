@@ -16,12 +16,9 @@ public class InputController {
 
 
     public InputController(InputStream in, OutputController outputController) {
+        this.input =in;
         this.entry = new Scanner(in);
         this.out = outputController;
-    }
-
-    public int nextInt() {
-        return entry.nextInt();
     }
 
     public String playerName() {

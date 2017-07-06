@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Set;
 
-public class PlayBoard implements BoardCreator {
+public class PlayBoard implements Boards {
 
     private Map<Integer, AvailableMarks> playBoard;
     private int width;

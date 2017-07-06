@@ -1,16 +1,13 @@
-package com.wojnar;
+package com.wojnar.board;
 
 import com.wojnar.IOstrems.*;
-import com.wojnar.board.*;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.InputMismatchException;
-import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 
@@ -20,7 +17,7 @@ import static org.testng.Assert.assertTrue;
 public class TestPlayBoard {
     OutputController out= new OutputController(System.out);
 
-    @DataProvider (name="avaiableSize")
+    @DataProvider (name="availableSize")
     public Object[][] sizes(){
         return new Object[][]{{9,9},{123,7},{3,3}};
     }
@@ -30,21 +27,21 @@ public class TestPlayBoard {
     }
 
     @Test
-    public void testAvaiableMarksAppropriateValueReturn(){
+    public void testAvailableMarksAppropriateValueReturn(){
         assertEquals(AvailableMarks.O.getCharacter(),"O");
         assertEquals(AvailableMarks.X.getCharacter(),"X");
         assertEquals(AvailableMarks.EMPTY_MARK.getCharacter(),"|");
     }
-    @Test(dataProvider ="avaiableSize" )
+    @Test(dataProvider ="availableSize" )
     public void testEmptyBoardCreation(int x, int y){
-        BoardCreator myPlayBoard = new PlayBoard();
+        Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(x,y);
         assertEquals(myPlayBoard.getSize(),x*y);
 
     }
-    @Test(dataProvider ="avaiableSize" )
+    @Test(dataProvider ="availableSize" )
     public void testInformationBordProvides(int x, int y) {
-        BoardCreator myPlayBoard = new PlayBoard();
+        Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(x,y);
         assertEquals(myPlayBoard.getSize(),x*y);
         assertEquals(myPlayBoard.getHeight(),y);
@@ -54,7 +51,7 @@ public class TestPlayBoard {
 
     @Test(dataProvider ="avaiableSize")
     public void testIfEachFieldInEmptyBoardContainEmptyValue(int x, int y){
-        BoardCreator myPlayBoard = new PlayBoard();
+        Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(x,y);
         for (int i=1;i<myPlayBoard.getSize()+1;i++){
             assertEquals(myPlayBoard.getValue(i), AvailableMarks.EMPTY_MARK);
@@ -63,7 +60,7 @@ public class TestPlayBoard {
 
     @Test(dataProvider ="avaiableSize")
     public void testUpdatingFieldByAvailableValues(int x, int y){
-        BoardCreator myPlayBoard = new PlayBoard();
+        Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(x,y);
         BoardUpdater updater = new BoardUpdater(myPlayBoard, out);
         for (Integer k : myPlayBoard.keySet()) {
@@ -74,7 +71,7 @@ public class TestPlayBoard {
 
     @Test(dataProvider ="avaiableSize")
     public void testReturnClearBoardToNextPlay(int x, int y){
-        BoardCreator myPlayBoard = new PlayBoard();
+        Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(x,y);
         BoardUpdater updater = new BoardUpdater(myPlayBoard, out);
         for (Integer k : myPlayBoard.keySet()) {
@@ -89,7 +86,7 @@ public class TestPlayBoard {
 
     @Test(dataProvider ="valuseProvider")
     public void testSetValue(int x, AvailableMarks mark) throws InputMismatchException {
-        BoardCreator myPlayBoard = new PlayBoard();
+        Boards myPlayBoard = new PlayBoard();
         myPlayBoard.createBoard(100, 100);
         BoardUpdater updater = new BoardUpdater(myPlayBoard, out);
         assertTrue(myPlayBoard.setValue(x,mark));

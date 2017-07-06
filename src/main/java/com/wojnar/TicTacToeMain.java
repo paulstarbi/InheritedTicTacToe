@@ -3,8 +3,8 @@ package com.wojnar;
 import com.wojnar.GameEngine.*;
 import com.wojnar.Players.PlayerCreator;
 import com.wojnar.board.AvailableMarks;
-import com.wojnar.board.BoardCreator;
 import com.wojnar.Players.Player;
+import com.wojnar.board.Boards;
 import com.wojnar.board.PlayBoard;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
@@ -22,7 +22,7 @@ public class TicTacToeMain {
         InputController inControl = new InputController(System.in, outControl);
         boolean isApplicationRunning = true;
         outControl.printWelcomeMessage();
-        BoardCreator myPlayBoard = new PlayBoard();
+        Boards myPlayBoard = new PlayBoard();
 
         List<Player> players = new ArrayList<>();
         List<AvailableMarks> availableCharacters = new ArrayList<>();

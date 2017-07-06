@@ -3,9 +3,9 @@ package com.wojnar.GameEngine;
 import com.wojnar.Players.Player;
 import com.wojnar.board.BoardDrawer;
 import com.wojnar.board.BoardUpdater;
-import com.wojnar.board.Boards;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
+import com.wojnar.board.Boards;
 
 import java.util.List;
 
