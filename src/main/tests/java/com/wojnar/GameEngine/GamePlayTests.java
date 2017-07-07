@@ -31,4 +31,15 @@ public class GamePlayTests {
         WinChecker winChecker = new WinChecker(3);
         assertTrue(winChecker.checkIfWonVertical(playBoard,player,10));
     }
+    @Test
+//     \thios one
+    public void testDiagonalWinCondition(){
+        playBoard.createBoard(5,5);
+        BoardUpdater updater=new BoardUpdater(playBoard,out);
+        updater.updateBoard(2, AvailableMarks.O);
+        updater.updateBoard(8,AvailableMarks.O);
+        updater.updateBoard(14,AvailableMarks.O);
+        WinChecker winChecker = new WinChecker(3);
+        assertTrue(winChecker.checkIfWonWithDiagonal(playBoard,player,8));
+    }
 }
