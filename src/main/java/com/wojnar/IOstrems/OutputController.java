@@ -48,31 +48,19 @@ public class OutputController {
     public void printBoardSizeSelectionMessage(String axis) {
        writeOut("How many fields board should have in " + axis + " axis");
     }
-    public void printToSmallBoardSizeMessage(String axis) {
-        writeOut("Board size " + axis + " is too small. Setting up as default 3 ...");
-    }
     public void printSelectingSequenceLengthMessage() {
-        writeOut("How long character sequence should be");
-    }
-    public void printSequenceLengthTooBigMessage() {
-        writeOut("Sequence length is bigger than shorter side of board. Setting it as this side value");
-    }
-    public void printSequenceLengthTooSmallMessage() {
-        writeOut("Sequence length is smaller than default 3 value. Setting it as this value");
+        writeOut("Character sequence necessary to win");
     }
     public void printCharacterPlacingMessage(Player player) {
         writeOut("Where would " + player.getName() + " place his character");
     }
-    public void printChoosingCoordinateMessage(String coordinate, int sideSize) {
-        writeOut("Please select " + coordinate + " coordinate: (From 1 to " + sideSize + ")"); }
-
     public void printBO3WonMessage(List<Player> players) {
         writeOut(players.get(0).getName() + " score after 3 rounds - "+ players.get(0).getScore() +
         " and "+players.get(1).getName() + " score after 3 rounds - "+ players.get(1).getScore());
     }
 
     public void printOneGameWonMessage(Player player) {
-            writeOut(player.getName() + " won match!");
+            writeOut(player.getName() + " WON a match!");
     }
 
     public void fieldBusy() {
@@ -103,5 +91,9 @@ public class OutputController {
                 " - "+players.get(0).getName()+ "\n"
                 + players.get(1).getCharacter()+
                 " - "+players.get(1).getName());
+    }
+
+    public void printNoMovesAvailable() {
+        writeOut("No more moves ! It's a DRAW !! \nNext Round...");
     }
 }

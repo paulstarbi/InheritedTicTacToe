@@ -1,7 +1,6 @@
 package com.wojnar;
 
 import com.wojnar.GameEngine.BestOfTreeFormat;
-import com.wojnar.GameEngine.WinChecker;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
 import com.wojnar.Players.HumanPlayer;

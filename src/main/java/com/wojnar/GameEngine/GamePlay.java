@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class GamePlay implements IGamePlay{
     private Boards playBoard;
-    private IWinChecker winChecker;
+    private GameState winChecker;
     private List<Player> players;
     private boolean isGameInProgress;
     private InputController inputController;
     private OutputController out;
     private BoardUpdater updater;
 
-    GamePlay(List<Player> players, Boards board, IWinChecker winChecker, InputController inputController, OutputController out) {
+    GamePlay(List<Player> players, Boards board, GameState winChecker, InputController inputController, OutputController out) {
         this.playBoard = board;
         this.players = players;
         this.winChecker = winChecker;
@@ -47,7 +47,7 @@ public class GamePlay implements IGamePlay{
         boolean playerGotRightCoordinates = false;
         while (!playerGotRightCoordinates) {
             int where = inputController.takeNumberFromUser();
-            if (where > 0 && where < playBoard.getSize()) {
+            if (where > 0 && where < playBoard.getSize()+1) {
                 if (playBoard.isFieldAvailable(where)) {
                     updater.updateBoard(where, currPlayer.getCharacter());
                     checkIfPlayerWon(where, currPlayer);
@@ -67,6 +67,13 @@ public class GamePlay implements IGamePlay{
         if (winChecker.checkIfPlayerWon(playBoard,starPosition,player)) {
             player.addPoint(3);
             out.printOneGameWonMessage(player);
+            isGameInProgress = false;
+        }
+        else if (winChecker.isMovesAvailable(playBoard)) {
+            out.printNoMovesAvailable();
+            for (Player p : players) {
+                p.addPoint(1);
+            }
             isGameInProgress = false;
         }
         return isGameInProgress;

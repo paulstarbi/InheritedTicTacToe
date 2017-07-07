@@ -25,8 +25,13 @@ public class PlayBoard implements Boards {
     }
 
     @Override
-    public boolean cntainsKey(int key) {
+    public boolean isKeyExist(int key) {
         return playBoard.containsKey(key);
+    }
+
+    @Override
+    public boolean isAvailableFieldExist() {
+        return playBoard.containsValue(AvailableMarks.EMPTY_MARK);
     }
 
     @Override
