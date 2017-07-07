@@ -6,7 +6,6 @@ import com.wojnar.board.BoardUpdater;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
 import com.wojnar.board.Boards;
-import com.wojnar.board.IWinChecker;
 
 import java.util.List;
 
@@ -39,19 +38,19 @@ public class GamePlay implements IGamePlay{
                 BoardDrawer.drawBoard(playBoard);
                 out.printCharacterPlacingMessage(currPlayer);
                 getAvailableFieldNumFromUser(currPlayer);
-                checkIfPlayerWon(currPlayer);
                 currPlayer = currPlayer.changePlayer(players);
             }
         return false;
     }
 
-    private void getAvailableFieldNumFromUser(Player player) {
+    private void getAvailableFieldNumFromUser(Player currPlayer) {
         boolean playerGotRightCoordinates = false;
         while (!playerGotRightCoordinates) {
             int where = inputController.takeNumberFromUser();
             if (where > 0 && where < playBoard.getSize()) {
                 if (playBoard.isFieldAvailable(where)) {
-                    updater.updateBoard(where, player.getCharacter());
+                    updater.updateBoard(where, currPlayer.getCharacter());
+                    checkIfPlayerWon(where, currPlayer);
                     playerGotRightCoordinates = true;
                 } else {
                     out.fieldBusy();
@@ -64,8 +63,8 @@ public class GamePlay implements IGamePlay{
         }
     }
 
-    private boolean checkIfPlayerWon(Player player) {
-        if (winChecker.checkIfPlayerWon(player)) {
+    private boolean checkIfPlayerWon(int starPosition,Player player) {
+        if (winChecker.checkIfPlayerWon(playBoard,starPosition,player)) {
             player.addPoint(3);
             out.printOneGameWonMessage(player);
             isGameInProgress = false;

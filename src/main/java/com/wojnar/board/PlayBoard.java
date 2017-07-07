@@ -17,11 +17,16 @@ public class PlayBoard implements Boards {
 
     @Override
     public void createBoard(int width, int height) {
-        for (int i = 1; i<width*height +1; i++){
+        for (int i = 1; i<width*height+1; i++){
             playBoard.put(i, AvailableMarks.EMPTY_MARK);
             this.width=width;
             this.height=height;
         }
+    }
+
+    @Override
+    public boolean cntainsKey(int key) {
+        return playBoard.containsKey(key);
     }
 
     @Override

@@ -40,9 +40,9 @@ public class InputController {
         }
     }
     public int takeNumberFromUser(){
-        String userIntput = entry.next();
+        String userNum = entry.next();
         try {
-            return Integer.parseInt(userIntput);
+            return Integer.parseInt(userNum);
         }catch (NumberFormatException nfe){
             out.printWrongSequence();
             return takeNumberFromUser();

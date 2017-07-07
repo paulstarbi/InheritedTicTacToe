@@ -1,7 +1,7 @@
 package com.wojnar;
 
-import com.wojnar.GameEngine.BestOfThree;
-import com.wojnar.board.WinChecker;
+import com.wojnar.GameEngine.BestOfTreeFormat;
+import com.wojnar.GameEngine.WinChecker;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
 import com.wojnar.Players.HumanPlayer;
@@ -59,17 +59,15 @@ public class UserInputControllerTests {
     @Test(dataProvider = "possiblMark")
     public void testChooseWhichCharacterStartTheGame(String playerChar ,AvailableMarks marks){
         inputController = new InputController(new ByteArrayInputStream(playerChar.getBytes()),out);
-        BestOfThree bestOfThree = new BestOfThree(players,myPlayBoard,
-                new WinChecker(myPlayBoard,3),inputController,out);
-        assertEquals(bestOfThree.whoStart().getCharacter(),marks);
+        BestOfTreeFormat bestOfTreeFormat = new BestOfTreeFormat(players,myPlayBoard,inputController,out);
+        assertEquals(bestOfTreeFormat.whoStart().getCharacter(),marks);
 
     }
     @Test(dataProvider = "wrongMarks", expectedExceptions = NoSuchElementException.class)
     public void testChooseWhichCharacterStartTheGameWrongMarks(String playerChar){
         inputController = new InputController(new ByteArrayInputStream(playerChar.getBytes()),out);
-        BestOfThree bestOfThree = new BestOfThree(players,myPlayBoard,
-                new WinChecker(myPlayBoard,3),inputController,out);
-        bestOfThree.whoStart();
+        BestOfTreeFormat bestOfTreeFormat = new BestOfTreeFormat(players,myPlayBoard,inputController,out);
+        bestOfTreeFormat.whoStart();
     }
 
     @Test

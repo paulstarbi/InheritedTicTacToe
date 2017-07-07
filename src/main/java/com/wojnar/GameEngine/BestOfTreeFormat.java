@@ -5,28 +5,26 @@ import com.wojnar.Players.Player;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
 import com.wojnar.board.Boards;
-import com.wojnar.board.IWinChecker;
 
 import java.util.List;
 
 /**
  * Created by bartomiej on 30.06.17.
  */
-public class BestOfThree implements IBestOfThree {
+public class BestOfTreeFormat implements GameFormats {
+    private int numGamesToPlay;
     private List<Player> players;
     private Boards playBoard;
-    private IWinChecker winChecker;
     private InputController inputController;
     private OutputController out;
 
 
-    public BestOfThree(List<Player> players, Boards board, IWinChecker winChecker,
-                       InputController inputController, OutputController out) {
+    public BestOfTreeFormat(List<Player> players, Boards board, InputController inputController, OutputController out) {
         this.players = players;
         this.playBoard = board;
-        this.winChecker = winChecker;
         this.inputController = inputController;
         this.out = out;
+        this.numGamesToPlay =3;
     }
 
 
@@ -34,13 +32,19 @@ public class BestOfThree implements IBestOfThree {
     public void executeGameFormat() {
         int BestOfThree = 0;
         Player currPlayer = whoStart();
-        while (BestOfThree<3) {
-            IGamePlay gamePlay = new GamePlay(players, playBoard, winChecker, inputController, out);
+        while (BestOfThree<numGamesToPlay) {
+            IGamePlay gamePlay = new GamePlay(players, playBoard, new WinChecker(winCondition()), inputController, out);
             gamePlay.executeGamePlay(currPlayer);
             currPlayer=currPlayer.changePlayer(players);
             BestOfThree++;
         }
         out.printBO3WonMessage(players);
+    }
+
+    @Override
+    public int winCondition() {
+        out.printSelectingSequenceLengthMessage();
+        return inputController.takeNumberFromUser(playBoard.getWidth(),playBoard.getHeight());
     }
 
     public Player whoStart() {

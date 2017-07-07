@@ -16,4 +16,5 @@ public interface Boards {
     boolean isFieldAvailable(int where);
     Set<Integer> keySet();
     void createBoard(int width, int height);
+    boolean cntainsKey(int key);
 }

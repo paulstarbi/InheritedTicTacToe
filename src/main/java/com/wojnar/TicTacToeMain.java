@@ -8,7 +8,6 @@ import com.wojnar.board.Boards;
 import com.wojnar.board.PlayBoard;
 import com.wojnar.IOstrems.InputController;
 import com.wojnar.IOstrems.OutputController;
-import com.wojnar.board.WinChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +34,12 @@ public class TicTacToeMain {
         }
 
         myPlayBoard.createBoard(inControl.getWidth(),inControl.getHeight());
-        outControl.printSelectingSequenceLengthMessage();
-        int characterSequenceLength = inControl.takeNumberFromUser(myPlayBoard.getWidth(),myPlayBoard.getHeight());
 
         while(isApplicationRunning) {
             outControl.printMenuMessage();
             switch(inControl.takeNumberFromUser()) {
                 case 1: {
-                    IBestOfThree bo3 = new BestOfThree(players, myPlayBoard,
-                            new WinChecker(myPlayBoard, characterSequenceLength), inControl, outControl);
+                    GameFormats bo3 = new BestOfTreeFormat(players, myPlayBoard, inControl, outControl);
                     bo3.executeGameFormat();
                     break;
                 }
