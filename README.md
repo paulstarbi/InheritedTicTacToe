@@ -19,7 +19,7 @@ Basic requirements:
 ```sh
 $ mvn install
 $ mvn test
-$ mvn exec:java -Dexec.maimClass="ps.Main"
+$ mvn exec:java -Dexec.mainClass="com.wojnar.TicTacToeMain"
 ```
 #Functional requirements
 
@@ -45,30 +45,33 @@ $ mvn exec:java -Dexec.maimClass="ps.Main"
 - We are bi-lingual: Polish and English are fine. In future we want to add more languages: messages are to be read from a file for chosen language. Choosing the language depends on configuration variable.
 
 # TODOs 
-- Drawing a board;k
-- Do a move; ok
-- Update board; ok
-- Validate move - is chosen field exist; ok
-- Is chosen field free ? ok
-- Checking is Draw/Win?; 2/5   
-    -Is draw ? Diagonal caseses ?
-- Creating Players; ok
-- Accepting Players move; ok
-- Multiple games; ok 
-- Announce of results after each round; 
-- Points giver (3-win;1-draw;0-lose); 
-- Results storing; ok 
+- Drawing a board; :thumbsup:
+- Do a move; :thumbsup:
+- Update board; :thumbsup:
+- Validate move - is chosen field exist; :thumbsup:
+- Is chosen field free ? :thumbsup:
+- Checking is Draw/Win?; :thumbsup:
+- Creating Players; :thumbsup:
+- Accepting Players move; :thumbsup:
+- Multiple games; :thumbsup:
+- Announce of results after each round; :thumbsup:
+- Points giver (3-win;1-draw;0-lose);  :thumbsup:
+- Results storing; :thumbsup:
 - Show information about state of game; 
-- Resizeable board;
-- Who will start ?;
-- Player chose condition of wining - multiple character required;
-- Exit during game;
-- Bilingual;
+- Resizeable board; :thumbsup:
+- Who will start ?; :thumbsup:
+- Player chose condition of wining - multiple character required; :thumbsup:
+- Bilingual; :thumbsup:
+- Improwing ui - better menu, show at the beginnig
  
 #Test List
 
  - creating a board
  - filling board;
- - insert value on correct place;
+ - insert value on correct/wrong place;
  - win conditions
+ - create players
+ - input streams
+ - 
+ - 
  - 

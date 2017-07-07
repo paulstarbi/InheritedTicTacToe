@@ -1,0 +1,17 @@
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/GameEngine/GameFormats.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/board/BoardUpdater.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/board/BoardDrawer.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/IOstrems/InputController.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/Players/PlayerCreator.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/board/Boards.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/GameEngine/GameState.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/board/AvailableMarks.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/IOstrems/OutputController.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/TicTacToeMain.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/GameEngine/GamePlay.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/GameEngine/GameStateChecker.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/Players/HumanPlayer.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/GameEngine/IGamePlay.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/Players/Player.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/GameEngine/BestOfTreeFormat.java
+/home/paul/IdeaProjects/InheritedTicTacToe/src/main/java/com/wojnar/board/PlayBoard.java
