@@ -23,7 +23,7 @@ public class BoardUpdater {
             myPlayBoard.setValue(i,o);
             return true;
         }catch (InputMismatchException ime){
-            out.printInputMismachExMessage();
+            out.printInputMismatchExMessage();
             return false;
         }
     }

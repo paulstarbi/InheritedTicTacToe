@@ -36,7 +36,7 @@ public class BestOfTreeFormat implements GameFormats {
         while (BestOfThree<numGamesToPlay) {
             IGamePlay gamePlay = new GamePlay(players, playBoard, new GameStateChecker(seqToWin), inputController, out);
             gamePlay.executeGamePlay(currPlayer);
-            currPlayer=currPlayer.changePlayer(players);
+            currPlayer=currPlayer.switchPlayer(players);
             BestOfThree++;
         }
         out.printBO3WonMessage(players);

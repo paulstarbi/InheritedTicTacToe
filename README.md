@@ -19,7 +19,7 @@ Basic requirements:
 ```sh
 $ mvn install
 $ mvn test
-$ mvn exec:java -Dexec.mainClass="com.wojnar.TicTacToeMain"
+$ mvn exec:java -Dexec.mainClass="com.paul.TicTacToeMain"
 ```
 #Functional requirements
 

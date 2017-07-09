@@ -12,6 +12,6 @@ public interface Player {
     int getScore();
     void addPoint(int i);
     AvailableMarks getCharacter();
-    Player changePlayer(List<Player> players);
+    Player switchPlayer(List<Player> players);
 
 }

@@ -4,9 +4,6 @@ import com.paul.board.AvailableMarks;
 
 import java.util.List;
 
-/**
- * Created by bartomiej on 29.06.17.
- */
 public class HumanPlayer implements Player {
     private String name;
     private int score;
@@ -19,7 +16,7 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public Player changePlayer(List<Player> players) {
+    public Player switchPlayer(List<Player> players) {
             if(this.getCharacter().equals(players.get(0).getCharacter()))
                 return players.get(1);
             else

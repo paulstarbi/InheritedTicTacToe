@@ -11,18 +11,17 @@ import java.util.Scanner;
  */
 public class InputController {
     private Scanner entry;
-    private InputStream input;
     private OutputController out;
 
 
     public InputController(InputStream in, OutputController outputController) {
-        this.input =in;
         this.entry = new Scanner(in);
         this.out = outputController;
     }
 
     public String playerName() {
-        return entry.next();
+        String playerName = entry.next();
+        return playerName.trim();
     }
 
     public AvailableMarks choseMark() {
@@ -49,7 +48,7 @@ public class InputController {
         }
     }
 
-    public int takeNumberFromUser(int minSize){
+    private int takeNumberFromUser(int minSize){
         String userInput = Integer.toString(takeNumberFromUser());
         try {
             if (Integer.parseInt(userInput) < minSize)
@@ -62,10 +61,10 @@ public class InputController {
     }
 
     public int takeNumberFromUser(int width, int height) {
-        String userInput = Integer.toString(takeNumberFromUser());
+        String userInput = Integer.toString(takeNumberFromUser(3));
         try {
-            if (Integer.parseInt(userInput) <width ||
-                    Integer.parseInt(userInput) < height)
+            if (Integer.parseInt(userInput) >width ||
+                    Integer.parseInt(userInput) > height)
                 throw new IllegalArgumentException();
                 return Integer.parseInt(userInput);
         }catch (IllegalArgumentException iae){

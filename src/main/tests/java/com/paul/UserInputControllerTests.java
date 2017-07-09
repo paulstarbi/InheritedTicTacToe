@@ -72,12 +72,15 @@ public class UserInputControllerTests {
     @Test
     public void testPlayerChangingTour(){
         Player currPlayer = players.get(0);
-        assertEquals(currPlayer=currPlayer.changePlayer(players), players.get(1));
-        assertEquals(currPlayer=currPlayer.changePlayer(players), players.get(0));
-        assertEquals(currPlayer.changePlayer(players), players.get(1));
+        assertEquals(currPlayer=currPlayer.switchPlayer(players), players.get(1));
+        assertEquals(currPlayer=currPlayer.switchPlayer(players), players.get(0));
+        assertEquals(currPlayer.switchPlayer(players), players.get(1));
     }
+    @Test
+    public void testMessegesLanguageChange() {
+//        assertEquals(out.);
 
-
+    }
 }
 
 

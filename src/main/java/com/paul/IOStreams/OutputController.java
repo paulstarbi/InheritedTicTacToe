@@ -8,23 +8,21 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-/**
- * Created by bartomiej on 29.06.17.
- */
 public class OutputController {
-    private  OutputStream output;
-    String language;
-    String country;
-    Locale currentLocale;
-    ResourceBundle messages;
+    private final OutputStream output;
+    private String language;
+    private String country;
+    private Locale currentLocale;
+    private ResourceBundle messages;
 
-    public void changeLanguageToPolish() {
-        language="pl";
-        country="PL";
+
+    public void switchLanguage() {
+        if (language.equals("en"))language="pl";
+        else language="en";
+        if (country.equals("US"))country="PL";
+        else country ="US";
         currentLocale = new Locale(language, country);
         messages = ResourceBundle.getBundle("Language", currentLocale);
-        writeOut(messages.getString("greetings"));
-
     }
     public OutputController(OutputStream output) {
         this.output=output;
@@ -34,7 +32,7 @@ public class OutputController {
         this.messages = ResourceBundle.getBundle("Language",currentLocale);
     }
 
-     void writeOut(String message) {
+     private void writeOut(String message) {
         try {
             String nLineMessage = message.concat("\n");
             output.write(nLineMessage.getBytes());
@@ -85,14 +83,14 @@ public class OutputController {
     public void printWrongSequence(int width, int height) {
         writeOut(messages.getString("printWrongSequenceHeightWidth")+width+"x"+height);
     }
-    public void printInputMismachExMessage() {
-        writeOut(messages.getString("printInputMismachExMessage"));
+    public void printInputMismatchExMessage() {
+        writeOut(messages.getString("printInputMismatchExMessage"));
     }
     public void printBayMessage() {
         writeOut(messages.getString("printBayMessage"));
     }
     public void printWhichPlayerHasToStar(List<Player> players) {
-        writeOut(messages.getString("printWhichPlayerHasToStar")+" "+players.get(0).getCharacter()+
+        writeOut(messages.getString("printWhichPlayerHasToStar")+players.get(0).getCharacter()+
                 " - "+players.get(0).getName()+ "\n"
                 + players.get(1).getCharacter()+
                 " - "+players.get(1).getName());

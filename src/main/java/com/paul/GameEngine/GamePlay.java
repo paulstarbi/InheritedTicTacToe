@@ -38,7 +38,7 @@ public class GamePlay implements IGamePlay{
                 BoardDrawer.drawBoard(playBoard);
                 out.printCharacterPlacingMessage(currPlayer);
                 getAvailableFieldNumFromUser(currPlayer);
-                currPlayer = currPlayer.changePlayer(players);
+                currPlayer = currPlayer.switchPlayer(players);
             }
         return false;
     }
