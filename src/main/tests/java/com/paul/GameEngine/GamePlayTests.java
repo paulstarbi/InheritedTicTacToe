@@ -42,7 +42,24 @@ public class GamePlayTests {
     public Object[][] horProvider(){
         return new Object[][]{{5,5,22,23,24,1,3},{15,15,48,46,47,1,3},{3,3,1,2,3,9,3},{6,7,4,5,6,2,3}};
     }
-    @Test(dataProvider = "horizontal")
+    @DataProvider(name="diagonalDown")
+    public Object[][] diagonalDown(){
+        return new Object[][]{{5,5,20,14,8,1,3},{15,15,37,53,68,1,3},{3,3,1,5,9,6,3},{6,7,90,83,76,97,3}};
+    }
+    @DataProvider(name="diagonalUP")
+    public Object[][] diagonalUP(){
+        return new Object[][]{{5,5,23,19,15,11,3},{15,15,150,164,178,136,3},{3,3,7,5,3,1,3},{6,7,22,17,27,2,3},};
+    }
+    @DataProvider(name="winChecker")
+    public Object[][] winchecker(){
+        return new Object[][]{{5,5,23,19,15,11,3},{15,15,150,164,178,136,3},{3,3,7,5,3,1,3},{6,7,22,17,27,2,3},
+        {5,5,20,14,8,1,3},{15,15,37,53,69,1,3},{3,3,1,5,9,6,3},{5,5,22,23,24,1,3},
+                {15,15,48,46,47,1,3},{3,3,1,2,3,9,3},{6,7,4,5,6,2,3},{15,15,100,115,130,7,3},{15,15,45,30,60,7,3},
+                {3,3,1,4,7,5,3},{6,7,4,10,16,5,3} };
+    }
+
+
+    @Test(dataProvider = "winChecker")
         public void testWinChecker(int width, int height, int pos1, int pos2, int pos3, int pos4, int seq){
         playBoard.createBoard(width,height);
         BoardUpdater updater=new BoardUpdater(playBoard,out);
@@ -57,7 +74,6 @@ public class GamePlayTests {
         sa.assertFalse(gameStateChecker.checkIfPlayerWon(playBoard,pos4,player));
         sa.assertAll();
     }
-
     @Test(dataProvider = "horizontal")
     public void testHorizontalWinCondition(int width, int height, int pos1, int pos2, int pos3, int pos4, int seq){
         playBoard.createBoard(width,height);
@@ -88,7 +104,7 @@ public class GamePlayTests {
         sa.assertFalse(gameStateChecker.checkIfWonVertical(playBoard,player,pos4));
         sa.assertAll();
     }
-    @Test(dataProvider = "horizontal")
+    @Test(dataProvider = "diagonalUP")
     public void testDiagonalUpToLeftWinCondition(int width, int height, int pos1, int pos2, int pos3, int pos4, int seq){
         playBoard.createBoard(width,height);
         BoardUpdater updater=new BoardUpdater(playBoard,out);
@@ -103,7 +119,7 @@ public class GamePlayTests {
         sa.assertFalse(gameStateChecker.checkIfWonWithDiagonalUpToLeft(playBoard,player,pos4));
         sa.assertAll();
     }
-    @Test(dataProvider = "horizontal")
+    @Test(dataProvider = "diagonalDown")
     public void testDiagonalUpToRightWinCondition(int width, int height, int pos1, int pos2, int pos3, int pos4, int seq){
         playBoard.createBoard(width,height);
         BoardUpdater updater=new BoardUpdater(playBoard,out);
@@ -117,6 +133,16 @@ public class GamePlayTests {
         sa.assertFalse(gameStateChecker.checkIfWonWithDiagonalUpToRight(playBoard,player,pos3));
         sa.assertFalse(gameStateChecker.checkIfWonWithDiagonalUpToRight(playBoard,player,pos4));
         sa.assertAll();
+    }
+    @Test
+    public void testAvailabilityField(){
+        playBoard.createBoard(7,11);
+        BoardUpdater updater = new BoardUpdater(playBoard,out);
+        for (int i = 1; i <playBoard.getSize()+1 ; i++) {
+            assertTrue(playBoard.isFieldAvailable(i));
+            updater.updateBoard(i,AvailableMarks.X);
+            assertFalse(playBoard.isFieldAvailable(i));
+        }
     }
     @Test
     public void testAvailableMoves(){
@@ -138,4 +164,21 @@ public class GamePlayTests {
         assertEquals(bestOfTreeFormat.whoStart(),p);
     }
 
+    @Test (dataProvider = "winChecker")
+    public void testGamePlayStateChecker(int width, int height, int pos1, int pos2, int pos3, int pos4, int seq){
+        playBoard.createBoard(width,height);
+        BoardUpdater updater=new BoardUpdater(playBoard,out);
+        updater.updateBoard(pos1, AvailableMarks.O);
+        updater.updateBoard(pos2,AvailableMarks.O);
+        updater.updateBoard(pos3,AvailableMarks.O);
+        GameStateChecker gameStateChecker = new GameStateChecker(seq);
+        GamePlay gamePlay = new GamePlay(playerList,playBoard,gameStateChecker,
+                inputController,out);
+        SoftAssert sa = new SoftAssert();
+        sa.assertFalse(gamePlay.checkStateOfGame(pos1,player));
+        sa.assertFalse(gamePlay.checkStateOfGame(pos2,player));
+        sa.assertFalse(gamePlay.checkStateOfGame(pos3,player));
+        sa.assertFalse(gamePlay.checkStateOfGame(pos4,player));
+        sa.assertAll();
+    }
 }

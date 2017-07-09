@@ -1,4 +1,4 @@
-package com.paul;
+package com.paul.IOStreams;
 
 import com.paul.GameEngine.BestOfTreeFormat;
 import com.paul.IOStreams.InputController;
@@ -11,7 +11,6 @@ import com.paul.board.PlayBoard;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -39,11 +38,7 @@ public class UserInputControllerTests {
     }
     @DataProvider(name = "wrongMarks")
     public Object[][] wrongMarksData(){
-        return new Object[][]{{"q"},{"rrr"},{"/_s"},{"|"},{AvailableMarks.EMPTY_MARK.getCharacter()}};
-    }
-   @DataProvider(name = "numbers")
-    public Object[][] numbers(){
-        return new Object[][]{{"3",3},{"5",5},{"4",4},{"7",7}};
+        return new Object[][]{{"2"},{"rrr"},{"/_s"},{"|"},{AvailableMarks.EMPTY_MARK.getCharacter()}};
     }
 
     @BeforeTest
@@ -59,23 +54,6 @@ public class UserInputControllerTests {
         assertEquals(myPlayBoard.getSize(),43*26);
     }
 
-    @Test
-    public void testGetScoresFromPlayer(){
-        for (Player p:players) {
-            assertEquals(p.getScore(),0);
-        }}
-    @Test
-    public void testSetScorePlayer(){
-        SoftAssert sa = new SoftAssert();
-        for (Player p:players) {
-            sa.assertEquals(p.getScore(),0);
-            p.addPoint(3);
-            sa.assertEquals(p.getScore(),3);
-            p.addPoint(1);
-            sa.assertEquals(p.getScore(),4);
-        }
-        sa.assertAll();
-    }
 
     @Test(dataProvider = "possiblMark")
     public void testChooseWhichCharacterStartTheGame(String playerChar ,AvailableMarks marks){
@@ -90,24 +68,18 @@ public class UserInputControllerTests {
         BestOfTreeFormat bestOfTreeFormat = new BestOfTreeFormat(players,myPlayBoard,inputController,out);
         bestOfTreeFormat.whoStart();
     }
-    @Test(dataProvider = "wrongMarks", expectedExceptions = NoSuchElementException.class)
-    public void testTakeNumberFromUserWrongInput(String playerChar){
-        inputController = new InputController(new ByteArrayInputStream(playerChar.getBytes()),out);
-        inputController.takeNumberFromUser();
-        inputController.takeNumberFromUser(3,3);
-    }
-     @Test(dataProvider = "numbers")
-    public void testTakeNumberFromUserOkInput(String playerChar,int expected){
-        inputController = new InputController(new ByteArrayInputStream(playerChar.getBytes()),out);
-        assertEquals(inputController.takeNumberFromUser(),expected);
-        assertEquals(inputController.takeNumberFromUser(7,7),expected);
-    }
+
     @Test
     public void testPlayerChangingTour(){
         Player currPlayer = players.get(0);
         assertEquals(currPlayer=currPlayer.switchPlayer(players), players.get(1));
         assertEquals(currPlayer=currPlayer.switchPlayer(players), players.get(0));
         assertEquals(currPlayer.switchPlayer(players), players.get(1));
+    }
+    @Test
+    public void testMessegesLanguageChange() {
+//        assertEquals(out.);
+
     }
 }
 

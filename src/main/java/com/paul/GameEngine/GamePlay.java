@@ -43,14 +43,14 @@ public class GamePlay implements IGamePlay{
         return false;
     }
 
-    private void getAvailableFieldNumFromUser(Player currPlayer) {
+     void getAvailableFieldNumFromUser(Player currPlayer) {
         boolean playerGotRightCoordinates = false;
         while (!playerGotRightCoordinates) {
             int where = inputController.takeNumberFromUser();
             if (where > 0 && where < playBoard.getSize()+1) {
                 if (playBoard.isFieldAvailable(where)) {
                     updater.updateBoard(where, currPlayer.getCharacter());
-                    checkIfPlayerWon(where, currPlayer);
+                    checkStateOfGame(where, currPlayer);
                     playerGotRightCoordinates = true;
                 } else {
                     out.fieldBusy();
@@ -63,7 +63,7 @@ public class GamePlay implements IGamePlay{
         }
     }
 
-    private boolean checkIfPlayerWon(int starPosition,Player player) {
+     boolean checkStateOfGame(int starPosition, Player player) {
         if (winChecker.checkIfPlayerWon(playBoard,starPosition,player)) {
             player.addPoint(3);
             out.printOneGameWonMessage(player);
