@@ -44,7 +44,8 @@ public class GamePlay implements IGamePlay{
         playBoard.clearBoard();
             for (int turns = 0; isGameInProgress && turns < playBoard.getSize(); turns++) {
                 BoardDrawer.drawBoard(playBoard);
-                out.writeOut("printCharacterPlacingMessage" +" "+ currPlayer.getCharacter());
+                out.writeOut("printCharacterPlacingMessage");
+                System.out.println(currPlayer.getCharacter());
                 int where = getAvailableFieldNumFromUser(currPlayer);
 //                onlineGame.
                checkStateOfGame(where, currPlayer);
@@ -77,6 +78,7 @@ public class GamePlay implements IGamePlay{
      boolean checkStateOfGame(int starPosition, Player player) {
         if (winChecker.checkIfPlayerWon(playBoard,starPosition,player)) {
             player.addPoint(3);
+            System.out.print(player.getName() + " ");
             out.writeOut("printOneGameWonMessage");
             isGameInProgress = false;
         }

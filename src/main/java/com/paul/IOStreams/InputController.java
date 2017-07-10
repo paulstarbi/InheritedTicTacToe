@@ -43,7 +43,7 @@ public class InputController {
         try {
             return Integer.parseInt(userInput);
         }catch (NumberFormatException nfe){
-            out.writeOut("printWrongSequence"+" "+3);
+            out.writeOut("printWrongSequence");
             return takeNumberFromUser();
         }
     }
@@ -55,7 +55,8 @@ public class InputController {
                 throw new InputMismatchException();
             return Integer.parseInt(userInput);
         }catch (InputMismatchException ime ) {
-            out.writeOut("printWrongSequence"+ " "+minSize);
+            out.writeOut("printWrongSequence");
+            System.out.println(minSize);
             return takeNumberFromUser(minSize);
         }
     }
@@ -68,19 +69,22 @@ public class InputController {
                 throw new IllegalArgumentException();
                 return Integer.parseInt(userInput);
         }catch (IllegalArgumentException iae){
-            out.writeOut("printWrongSequenceHeightWidth"+width+"x"+height);
+            out.writeOut("printWrongSequenceHeightWidth");
+            System.out.println(width+"x"+height);
             return takeNumberFromUser(width,height);
         }
     }
 
 
     public int getWidth() {
-        out.writeOut("printBoardSizeSelectionMessage" + " " +"OX");
+        out.writeOut("printBoardSizeSelectionMessage");
+        System.out.println(" OX");
         return takeNumberFromUser(3);
     }
 
     public int getHeight() {
-        out.writeOut("printBoardSizeSelectionMessage" + " " +"OY");
+        out.writeOut("printBoardSizeSelectionMessage");
+        System.out.println(" OY");
         return takeNumberFromUser(3);
     }
 }
