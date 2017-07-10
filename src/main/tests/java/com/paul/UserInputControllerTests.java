@@ -96,12 +96,7 @@ public class UserInputControllerTests {
         inputController.takeNumberFromUser();
         inputController.takeNumberFromUser(3,3);
     }
-     @Test(dataProvider = "numbers")
-    public void testTakeNumberFromUserOkInput(String playerChar,int expected){
-        inputController = new InputController(new ByteArrayInputStream(playerChar.getBytes()),out);
-        assertEquals(inputController.takeNumberFromUser(),expected);
-        assertEquals(inputController.takeNumberFromUser(7,7),expected);
-    }
+
     @Test
     public void testPlayerChangingTour(){
         Player currPlayer = players.get(0);

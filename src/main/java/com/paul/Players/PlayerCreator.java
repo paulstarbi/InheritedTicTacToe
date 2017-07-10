@@ -14,12 +14,12 @@ import java.util.List;
     static HumanPlayer createPlayer(int i, InputController ic, List< AvailableMarks > availableCharacters, OutputController
         out) {
 
-            out.printPlayerNameSelectionMessage(i);
+            out.writeOut("printPlayerNameSelectionMessage");
 
             String playerName = ic.playerName();
             HumanPlayer newPlayer;
             if (availableCharacters.size() > 1) {
-                out.printCharacterSelectionMessage();
+                out.writeOut("printCharacterSelectionMessage");
                 AvailableMarks chosenCharacter = ic.choseMark();
                 availableCharacters.remove(availableCharacters.indexOf(chosenCharacter));
                 newPlayer = new HumanPlayer(playerName, chosenCharacter);

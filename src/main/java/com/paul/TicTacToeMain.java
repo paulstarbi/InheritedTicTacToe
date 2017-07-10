@@ -1,6 +1,7 @@
 package com.paul;
 
 import com.paul.GameEngine.*;
+import com.paul.IOStreams.ConnectionCreate;
 import com.paul.Players.PlayerCreator;
 import com.paul.board.AvailableMarks;
 import com.paul.Players.Player;
@@ -25,10 +26,10 @@ public class TicTacToeMain {
         List<Player> players = new ArrayList<>();
 
         while(isApplicationRunning) {
-            outControl.printMenuMessage();
+            outControl.writeOut("printMenuMessage");
             switch(inControl.takeNumberFromUser()) {
                 case 1: {
-                    outControl.printWelcomeMessage();
+                    outControl.writeOut("printWelcomeMessage");
                     List<AvailableMarks> availableCharacters = new ArrayList<>();
                     availableCharacters.add(AvailableMarks.X);
                     availableCharacters.add(AvailableMarks.O);
@@ -45,7 +46,7 @@ public class TicTacToeMain {
                     break;
                 }
                 default: {
-                    outControl.printBayMessage();
+                    outControl.writeOut("printBayMessage");
                     isApplicationRunning = false;
                 }
             }

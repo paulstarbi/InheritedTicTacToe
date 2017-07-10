@@ -31,72 +31,12 @@ public class OutputController {
         this.currentLocale=new Locale(language,country);
         this.messages = ResourceBundle.getBundle("Language",currentLocale);
     }
-
-     private void writeOut(String message) {
+     public void writeOut(String message) {
         try {
-            String nLineMessage = message.concat("\n");
+            String nLineMessage = messages.getString(message);
             output.write(nLineMessage.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void printWelcomeMessage() {
-        writeOut(messages.getString("printWelcomeMessage"));
-    }
-    public void printMenuMessage() {
-        writeOut(messages.getString("printMenuMessage"));
-    }
-    public void printPlayerNameSelectionMessage(int playerNumber) {
-        writeOut(messages.getString("printPlayerNameSelectionMessage")+" "+ playerNumber);
-    }
-    public void printCharacterSelectionMessage() {
-        writeOut(messages.getString("printCharacterSelectionMessage"));
-    }
-    public void printWrongCharacterSelection() {
-        writeOut(messages.getString("printWrongCharacterSelection"));
-    }
-    public void printBoardSizeSelectionMessage(String axis) {
-        writeOut(messages.getString("printBoardSizeSelectionMessage")+" "+axis);
-    }
-    public void printSelectingSequenceLengthMessage() {
-        writeOut(messages.getString("printSelectingSequenceLengthMessage"));
-    }
-    public void printCharacterPlacingMessage(Player player) {
-        writeOut(player.getName() +" "+ messages.getString("printCharacterPlacingMessage") +" "+ player.getCharacter());
-    }
-    public void printBO3WonMessage(List<Player> players) {
-        writeOut(players.get(0).getName() +" "+ messages.getString("printBO3WonMessage")+" "+ players.get(0).getScore() +
-        "\n" +players.get(1).getName() +" "+ messages.getString("printBO3WonMessage")+" "+ players.get(1).getScore());
-    }
-    public void printOneGameWonMessage(Player player) {
-        writeOut(player.getName() +" "+messages.getString("printOneGameWonMessage"));
-    }
-    public void fieldBusy() {
-        writeOut(messages.getString("fieldBusy"));
-    }
-    public void fieldNonExist() {
-        writeOut(messages.getString("fieldNonExist"));
-    }
-    public void printWrongSequence(int i) {
-        writeOut(messages.getString("printWrongSequence")+i);
-    }
-    public void printWrongSequence(int width, int height) {
-        writeOut(messages.getString("printWrongSequenceHeightWidth")+width+"x"+height);
-    }
-    public void printInputMismatchExMessage() {
-        writeOut(messages.getString("printInputMismatchExMessage"));
-    }
-    public void printBayMessage() {
-        writeOut(messages.getString("printBayMessage"));
-    }
-    public void printWhichPlayerHasToStar(List<Player> players) {
-        writeOut(messages.getString("printWhichPlayerHasToStar")+players.get(0).getCharacter()+
-                " - "+players.get(0).getName()+ "\n"
-                + players.get(1).getCharacter()+
-                " - "+players.get(1).getName());
-    }
-    public void printNoMovesAvailable() {
-        writeOut(messages.getString("printNoMovesAvailable"));
-    }
-
 }

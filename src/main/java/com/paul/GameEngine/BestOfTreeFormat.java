@@ -1,5 +1,6 @@
 package com.paul.GameEngine;
 
+import com.paul.IOStreams.ConnectionCreate;
 import com.paul.board.AvailableMarks;
 import com.paul.Players.Player;
 import com.paul.IOStreams.InputController;
@@ -32,24 +33,39 @@ public class BestOfTreeFormat implements GameFormats {
     public void executeGameFormat() {
         int BestOfThree = 0;
         Player currPlayer = whoStart();
-        int seqToWin =winCondition();
-        while (BestOfThree<numGamesToPlay) {
+        int seqToWin = winCondition();
+        boolean local=false;
+        if (local){
+        while (BestOfThree < numGamesToPlay) {
             IGamePlay gamePlay = new GamePlay(players, playBoard, new GameStateChecker(seqToWin), inputController, out);
             gamePlay.executeGamePlay(currPlayer);
             currPlayer=currPlayer.switchPlayer(players);
             BestOfThree++;
         }
-        out.printBO3WonMessage(players);
+        out.writeOut(players.get(0).getName() +" "+"printBO3WonMessage"+" "+ players.get(0).getScore() +
+                "\n" +players.get(1).getName() +" "+"printBO3WonMessage"+" "+ players.get(1).getScore());}
+        else {
+            ConnectionCreate onlineGame=new ConnectionCreate(inputController,out);
+            while (BestOfThree < numGamesToPlay) {
+            IGamePlay gamePlay = new GamePlay(players, playBoard, new GameStateChecker(seqToWin), inputController, out,onlineGame);
+            gamePlay.executeGamePlay(currPlayer);
+            currPlayer=currPlayer.switchPlayer(players);
+            BestOfThree++;
+        }
+        }
     }
 
     @Override
     public int winCondition() {
-        out.printSelectingSequenceLengthMessage();
+        out.writeOut("printSelectingSequenceLengthMessage");
         return inputController.takeNumberFromUser(playBoard.getWidth(),playBoard.getHeight());
     }
 
     public Player whoStart() {
-        out.printWhichPlayerHasToStar(players);
+        out.writeOut("printWhichPlayerHasToStar"+players.get(0).getCharacter()+
+                " - "+players.get(0).getName()+ "\n"
+                + players.get(1).getCharacter()+
+                " - "+players.get(1).getName());
         AvailableMarks mark = inputController.choseMark();
         if (players.get(0).getCharacter()==mark)
             return players.get(0);
