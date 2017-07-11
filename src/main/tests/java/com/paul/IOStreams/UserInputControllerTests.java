@@ -28,8 +28,9 @@ public class UserInputControllerTests {
     List<Player> players;
     Boards myPlayBoard;
     InputController inputController;
-    private OutputController out=new OutputController(new ByteArrayOutputStream());
+//    private OutputController out=new OutputController(new ByteArrayOutputStream());
 
+    private OutputController out = new OutputController(System.out);
 
     @DataProvider(name = "possiblMark")
     public Object[][] marksData(){
@@ -78,7 +79,11 @@ public class UserInputControllerTests {
     }
     @Test
     public void testMessegesLanguageChange() {
-//        assertEquals(out.);
+        int width = 3;
+        int height = 3;
+        out.writeOut("printWrongSequenceHeightWidth",width+"x"+height);
+        int minSize = 3;
+        out.writeOut("printWrongSequence",minSize);
 
     }
 }

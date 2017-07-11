@@ -9,8 +9,8 @@ import java.util.InputMismatchException;
  */
 public class BoardUpdater {
 
-    private Boards myPlayBoard;
-    private OutputController out;
+    private final Boards myPlayBoard;
+    private final OutputController out;
 
     public BoardUpdater(Boards myPlayBoard, OutputController out) {
         this.out = out;

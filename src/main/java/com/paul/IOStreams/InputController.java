@@ -10,8 +10,8 @@ import java.util.Scanner;
  * Created by paul on 04.07.17.
  */
 public class InputController {
-    private Scanner entry;
-    private OutputController out;
+    private final Scanner entry;
+    private final OutputController out;
 
 
     public InputController(InputStream in, OutputController outputController) {
@@ -55,8 +55,7 @@ public class InputController {
                 throw new InputMismatchException();
             return Integer.parseInt(userInput);
         }catch (InputMismatchException ime ) {
-            out.writeOut("printWrongSequence");
-            System.out.println(minSize);
+            out.writeOut("printWrongSequence",minSize);
             return takeNumberFromUser(minSize);
         }
     }
@@ -69,22 +68,16 @@ public class InputController {
                 throw new IllegalArgumentException();
                 return Integer.parseInt(userInput);
         }catch (IllegalArgumentException iae){
-            out.writeOut("printWrongSequenceHeightWidth");
-            System.out.println(width+"x"+height);
+            out.writeOut("printWrongSequenceHeightWidth",width+"x"+height);
             return takeNumberFromUser(width,height);
         }
     }
-
-
     public int getWidth() {
-        out.writeOut("printBoardSizeSelectionMessage");
-        System.out.println(" OX");
+        out.writeOut("printBoardSizeSelectionMessage"," OY");
         return takeNumberFromUser(3);
     }
-
     public int getHeight() {
-        out.writeOut("printBoardSizeSelectionMessage");
-        System.out.println(" OY");
+        out.writeOut("printBoardSizeSelectionMessage"," OY");
         return takeNumberFromUser(3);
     }
 }

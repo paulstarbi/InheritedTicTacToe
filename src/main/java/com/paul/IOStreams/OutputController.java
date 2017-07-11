@@ -1,10 +1,7 @@
 package com.paul.IOStreams;
 
-import com.paul.Players.Player;
-
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -34,6 +31,14 @@ public class OutputController {
      public void writeOut(String message) {
         try {
             String nLineMessage = messages.getString(message);
+            output.write(nLineMessage.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void writeOut(String message,Object property) {
+        try {
+            String nLineMessage = messages.getString(message) + property.toString();
             output.write(nLineMessage.getBytes());
         } catch (IOException e) {
             e.printStackTrace();

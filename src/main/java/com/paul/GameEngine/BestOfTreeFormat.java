@@ -42,12 +42,9 @@ public class BestOfTreeFormat implements GameFormats {
             currPlayer=currPlayer.switchPlayer(players);
             BestOfThree++;
         }
-            System.out.print(players.get(0).getName());
-            out.writeOut("printBO3WonMessage");
-            System.out.println(players.get(0).getScore());
-            System.out.print(players.get(1).getName());
-            out.writeOut("printBO3WonMessage");
-            System.out.println(players.get(1).getScore());}
+            out.writeOut("printBO3WonMessage",players.get(0).getName()+" "+players.get(0).getScore());
+            out.writeOut("printBO3WonMessage",players.get(1).getName()+" "+players.get(1).getScore());
+            }
         else {
             ConnectionCreate onlineGame=new ConnectionCreate(inputController,out);
             while (BestOfThree < numGamesToPlay) {
@@ -66,8 +63,7 @@ public class BestOfTreeFormat implements GameFormats {
     }
 
     public Player whoStart() {
-        out.writeOut("printWhichPlayerHasToStar");
-        System.out.println(players.get(0).getCharacter()+
+        out.writeOut("printWhichPlayerHasToStar",players.get(0).getCharacter()+
                 " - "+players.get(0).getName()+ "\n"
                 + players.get(1).getCharacter()+
                 " - "+players.get(1).getName());

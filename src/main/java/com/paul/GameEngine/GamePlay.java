@@ -10,17 +10,14 @@ import com.paul.board.Boards;
 
 import java.util.List;
 
-/**
- * Created by bartomiej on 29.06.17.
- */
 public class GamePlay implements IGamePlay{
-    private Boards playBoard;
-    private GameState winChecker;
-    private List<Player> players;
+    private final Boards playBoard;
+    private final GameState winChecker;
+    private final List<Player> players;
+    private final InputController inputController;
+    private final OutputController out;
+    private final BoardUpdater updater;
     private boolean isGameInProgress;
-    private InputController inputController;
-    private OutputController out;
-    private BoardUpdater updater;
     private ConnectionCreate onlineGame;
 
     GamePlay(List<Player> players, Boards board, GameState winChecker, InputController inputController, OutputController out) {
@@ -44,8 +41,7 @@ public class GamePlay implements IGamePlay{
         playBoard.clearBoard();
             for (int turns = 0; isGameInProgress && turns < playBoard.getSize(); turns++) {
                 BoardDrawer.drawBoard(playBoard);
-                out.writeOut("printCharacterPlacingMessage");
-                System.out.println(currPlayer.getCharacter());
+                out.writeOut("printCharacterPlacingMessage",currPlayer.getCharacter());
                 int where = getAvailableFieldNumFromUser(currPlayer);
 //                onlineGame.
                checkStateOfGame(where, currPlayer);
@@ -78,8 +74,7 @@ public class GamePlay implements IGamePlay{
      boolean checkStateOfGame(int starPosition, Player player) {
         if (winChecker.checkIfPlayerWon(playBoard,starPosition,player)) {
             player.addPoint(3);
-            System.out.print(player.getName() + " ");
-            out.writeOut("printOneGameWonMessage");
+            out.writeOut("printOneGameWonMessage",player.getName() +"\n");
             isGameInProgress = false;
         }
         else if (winChecker.isMovesAvailable(playBoard)) {
